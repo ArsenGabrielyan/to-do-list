@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ColorBox } from '../color-box';
+import { ColorBox } from '../../interfaces/color-box';
 
 @Component({
   selector: 'toDo-settings',

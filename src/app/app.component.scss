@@ -1,6 +1,6 @@
 $br: 8px;$blue: #009EFF;
 $red: #dc3545;$content-bg: #fafafa;
-@import "./mixins.scss";
+@import "./scss/mixins.scss";
 .to-do-container{
      display: flex;@include flex-align(center, center);
      flex-direction: column;min-height: 100vh;
@@ -30,7 +30,7 @@ $red: #dc3545;$content-bg: #fafafa;
                width: 100%;margin: 10px 0;display: flex;flex-direction: column;
                .form-details{
                     width: 100%;display: flex;@include flex-align(space-between, center);
-                    .input{padding: 10px;border: 2px solid #ccc;outline: none;width: 80%;border-radius: 5px;transition: .3s ease all;&:focus{border-color: $blue;}}
+                    .input{padding: 10px;border: 2px solid #ccc;outline: none;width: 80%;border-radius: 5px;transition: .3s ease all;font-size: 1.2rem;&:focus{border-color: $blue;}}
                     .btn{@include button($blue,$br)}
                }
                .invalidMsg{color: $red;font-weight: 500;margin: 10px 0;}

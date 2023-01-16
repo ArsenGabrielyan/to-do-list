@@ -1,6 +1,6 @@
 import { Component, OnDestroy, Renderer2 } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ToDoItem } from './to-do-item';
+import { ToDoItem } from './interfaces/to-do-item';
 import {timer, takeUntil, Subject, map} from "rxjs"
 
 @Component({

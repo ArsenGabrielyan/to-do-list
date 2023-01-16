@@ -1,5 +1,5 @@
 $red: #dc3545;$blue: #009EFF;$green: #22b455;$dark: #2f2f2f;$light: #e8e8e8;$yellow: #FFBF00;$orange: #FF6D28;$pink: #F56EB3;
-@import "../mixins.scss";
+@import "../../scss/mixins.scss";
 .option-title{font-size: 21px;font-weight: 400;margin: 10px 0;}
 .options{list-style: none;}
 .box{

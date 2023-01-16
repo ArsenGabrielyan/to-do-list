@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2 } from '@angular/core';
+import { Directive } from '@angular/core';
 import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from "@angular/forms"
 
 @Directive({
@@ -10,7 +10,6 @@ import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from "@angu
   }]
 })
 export class NoSpaceValidationDirective implements Validator {
-  constructor(private el: ElementRef){}
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
     const val = String(control.value);
     if(val.trim() === "") return {hasAnySpaces: true}
