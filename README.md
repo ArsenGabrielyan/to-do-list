@@ -12,7 +12,7 @@ mp start
 ```
 
 ## Other Commands
-`npm run build` - Build an Application
+`npm run build` - Build an Application <br>
 `npm start` - Starts the Application to `http://localhost:4200/`
 
 > GitHub [@ArsenGabrielyan](https://github.com/ArsenGabrielyan) &nbsp;&middot;&nbsp;
