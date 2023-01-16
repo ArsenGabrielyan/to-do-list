@@ -1,0 +1,27 @@
+$red: #dc3545;$blue: #009EFF;$green: #22b455;$dark: #2f2f2f;$light: #e8e8e8;$yellow: #FFBF00;$orange: #FF6D28;$pink: #F56EB3;
+@import "../mixins.scss";
+.option-title{font-size: 21px;font-weight: 400;margin: 10px 0;}
+.options{list-style: none;}
+.box{
+     padding: 5px;border-radius: 7px;
+     span{display: inline-block;@include size(40px,40px);text-indent: -99999px;margin: 5px;border: 2px solid transparent;cursor: pointer;}
+     #red{background-color: $red;}
+     #blue{background-color: $blue;}
+     #green{background-color: $green;}
+     #yellow{background-color: $yellow;}
+     #orange{background-color: $orange;}
+     #pink{background-color: $pink;}
+     #dark{background-color: $dark;}
+     #light{background-color: $light; border-color: #2f2f2f;}
+}
+.brightness-box{
+     @include size(100%,60px);max-width: 400px;
+     border: 2px solid #2f2f2f;border-radius: 8px;
+     padding: 0 20px;display: flex;
+     justify-content: space-between; align-items: center;span{margin: 0 10px;}
+     #range{
+          @include size(100%,3px);appearance: none;background-color: $blue;outline: none;
+          &::-webkit-slider-thumb{appearance: none;@include size(22px,22px);background: #333;border-radius: 50%;cursor: pointer;}
+     }
+}
+@media screen and (max-width: 600px){.box span{width: 30px;height: 30px;}}

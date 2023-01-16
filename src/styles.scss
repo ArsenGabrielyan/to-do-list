@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+     text-decoration: none;
+}
+@import "./app/checkbox.scss";
+@import "./app/responsibility.scss";
+@import "./app/app.component.scss";
+@import "./app/settings/settings.component.scss";

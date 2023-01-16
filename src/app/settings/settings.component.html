@@ -1,0 +1,16 @@
+<ul class="options">
+  <li class="option">
+    <h3 class="option-title">Background Color</h3>
+    <div class="box">
+      <span *ngFor="let option of colorbox" [id]="option.colorId" (click)="changeBgColor(option.colorId)">{{option.color}}</span>
+    </div>
+  </li>
+  <li class="option">
+    <h3 class="option-title">Brightness</h3>
+    <div class="brightness-box">
+      <span class="material-symbols-outlined">brightness_low</span>
+      <input type="range" name="brightness" id="range" min="10" max="100" [(ngModel)]="brightness" (change)="handleChangeBrightness()">
+      <span class="material-symbols-outlined">brightness_high</span>
+    </div>
+  </li>
+</ul>
