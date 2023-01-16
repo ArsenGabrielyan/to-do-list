@@ -8,7 +8,7 @@ git clone https://github.com/ArsenGabrielyan/to-do-list.git
 cd to-do-list
 npm install
 npm install -g @angular/cli
-mp start
+npm start
 ```
 
 ## Other Commands
