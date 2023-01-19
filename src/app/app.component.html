@@ -3,35 +3,34 @@
           <div class="app-title">
                <h1>To Do List</h1>
                <div class="buttons">
-                    <button id="btn" class="opt-btn {{id === 'settings' ? 'active' : ''}}" (click)="tabChange('settings')"><span class="material-symbols-outlined icon">settings</span> Settings </button>
-                    <button id="btn" class="opt-btn" (click)="clearAll()" *ngIf="id==='completed'"><span class="material-symbols-outlined icon">clear_all</span> Clear All</button>
+                    <button id="btn" class="opt-btn"[ngClass]="{'active': id === 'settings'}" (click)="tabChange('settings')"><span class="material-symbols-outlined icon">settings</span> Settings </button>
+                    <button id="btn" class="opt-btn" (click)="clearAll()" *ngIf="id==='completed'"><span class="material-symbols-outlined icon">delete_forever</span> Clear All</button>
                     <button id="btn" class="opt-btn" (click)="markAll()" *ngIf="id==='active'"><span class="material-symbols-outlined icon">check_box</span> Mark All </button>
                </div>
           </div>
           <form class="form" #toDoForm="ngForm" (submit)="addToDo(toDoForm)">
                <div class="form-details">
-                    <input type="text" id="add-input" name="toDoInput" class="input" placeholder="Add something to do"  [(ngModel)]="input" #addToDoInput="ngModel" required noSpaceValidation>
+                    <input type="text" id="add-input" name="toDoInput" class="input" placeholder="Add something to do" [(ngModel)]="input" #addToDoInput="ngModel" required noSpaceValidation>
                     <button id="btn" type="submit" class="btn" [disabled]="addToDoInput.errors?.['required'] || addToDoInput.errors?.['hasAnySpaces']">Add</button>
                </div>
-               <p class="invalidMsg" *ngIf="addToDoInput.errors?.['hasAnySpaces']">Add Some Tasks or Something to do please</p>
           </form>
           <ul class="tab-link">
-               <li id="btn" class="tab-button" (click)="tabChange('active')" [ngClass]="id === 'active' ? 'active' : ''">Pending</li>
-               <li id="btn"  (click)="tabChange('completed')" [ngClass]="id === 'completed' ? 'active' : ''">Completed</li>
+               <li id="btn" (click)="tabChange('active')" [ngClass]="{'active': id === 'active'}">Pending</li>
+               <li id="btn" (click)="tabChange('completed')" [ngClass]="{'active': id === 'completed'}">Completed</li>
           </ul>
      </div>
      <div class="lower">
           <div class="contentVal" *ngIf="id === 'active'">
                <ul class="toDoList activeToDo">
-                    <li class="toDo" *ngFor="let toDo of activeToDos; index as i" id="item{{i}}" (click)="handleCheckBox($event, i)">
-                         <p>{{toDo?.['item']}}</p>
-                         <label class="container"><input type="checkbox" name="toDoCheck" [checked]="toDo?.['checked']"><span class="checkbox" id="checkbox"></span></label>
+                    <li class="toDo" *ngFor="let toDo of pending; let i = index" id="item{{i}}" (click)="handleCheckBox($event, i)">
+                         <p>{{toDo.item}}</p>
+                         <label class="container"><input type="checkbox" name="toDoCheck" [checked]="toDo.checked"><span class="checkbox" id="checkbox"></span></label>
                          <span id="icon" class="material-symbols-outlined icon" (click)="editToDo(i)">edit</span>
                     </li>
                </ul>
           </div>
           <div class="contentVal" *ngIf="id === 'completed'">
-               <ul class="toDoList completedToDo"><li class="toDo" *ngFor="let toDo of completedToDos; index as i" id="item{{i}}"><p>{{toDo?.['item']}}</p><span id="icon" class="material-symbols-outlined icon" (click)="deleteToDo(i)">delete</span></li></ul>
+               <ul class="toDoList completedToDo"><li class="toDo" *ngFor="let toDo of completed; index as i" id="item{{i}}"><p>{{toDo.item}}</p><span id="icon" class="material-symbols-outlined icon" (click)="deleteToDo(i)">delete</span></li></ul>
           </div>
           <div class="contentVal settings" *ngIf="id === 'settings'">
                <h2>Settings</h2>

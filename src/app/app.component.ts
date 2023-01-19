@@ -9,60 +9,53 @@ import {timer, takeUntil, Subject, map} from "rxjs"
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnDestroy{
-  id: string = localStorage.getItem("activeId") || "active";
-  activeToDos: ToDoItem[] = JSON.parse(localStorage.getItem("activeTasks")!) || [];
-  completedToDos: ToDoItem[] = JSON.parse(localStorage.getItem("completedTasks")!) || [];
-  input = ""; destroy$ = new Subject<void>();
+  id: string = localStorage.getItem("tab") || "active";
+  pending: ToDoItem[] = JSON.parse(localStorage.getItem("pending")!) || [];
+  completed: ToDoItem[] = JSON.parse(localStorage.getItem("completed")!) || [];
+  input = ""; destr = new Subject<void>();
 
-  constructor(private renderer: Renderer2){}
-  ngOnDestroy(): void {this.destroy$.next()}
+  constructor(private rend: Renderer2){}
+  ngOnDestroy(): void {this.destr.next()}
   
-  tabChange(id:string){this.id = id;localStorage.setItem("activeId", this.id)}
+  tabChange(t:string){this.id = t;localStorage.setItem("tab", this.id)}
   addToDo(form: NgForm){
-    let item: ToDoItem = {item: this.input,checked: false};this.activeToDos.push(item);
-    localStorage.setItem("activeTasks", JSON.stringify(this.activeToDos))
-    form.reset(this.input)
+    let item: ToDoItem = {item: this.input,checked: false};this.pending.push(item);
+    localStorage.setItem("pending", JSON.stringify(this.pending));form.reset(this.input)
   }
   handleCheckBox(e:any, i:number){
     if(e.target.checked === undefined) return;
-    const parentElem = e.target.parentNode.parentElement;
-    this.activeToDos[i].checked = !this.activeToDos[i].checked;
-    this.completedToDos.push(this.activeToDos[i]);
-    if(e.target.checked === this.activeToDos[i].checked) this.removeItem(parentElem,i);
+    const parent = e.target.parentNode.parentElement;
+    this.pending[i].checked = !this.pending[i].checked;
+    this.completed.push(this.pending[i]);
+    if(e.target.checked === this.pending[i].checked) this.removeItem(parent,i);
   }
   editToDo(i:number){
     const newVal = prompt('Enter a new Value'); 
-    newVal?.trim() === "" ? alert("Enter value, not any blank spaces") : this.activeToDos[i].item = newVal!;
-    localStorage.setItem("activeTasks", JSON.stringify(this.activeToDos))
+    newVal?.trim() === "" ? alert("It's Required") : this.pending[i].item = newVal!;
+    localStorage.setItem("pending", JSON.stringify(this.pending))
   }
   deleteToDo(i:number){
-    const sure = confirm("Are you sure you want to delete this task (item)?")
-    if(sure){this.completedToDos.splice(i,1);localStorage.setItem("completedTasks", JSON.stringify(this.completedToDos))} else return;
+    const sure = confirm("Are you sure to delete this task (item)?")
+    if(sure){this.completed.splice(i,1);localStorage.setItem("completed", JSON.stringify(this.completed))}
   }
   markAll(){
-    if(!this.activeToDos.length) {alert("There is No Active Tasks to Mark them all"); return;};
-    this.activeToDos.map((_,i)=>{
-      this.activeToDos[i].checked = true;this.completedToDos.push(this.activeToDos[i]);
-      if(this.activeToDos[i].checked) this.removeItem(document.querySelectorAll(".toDo")[i], i, this.activeToDos.length);
+    if(!this.pending.length) {alert("There is No Active Tasks to Mark them all"); return;};
+    this.pending.map((_,i)=>{
+      this.pending[i].checked = true;this.completed.push(this.pending[i]);
+      if(this.pending[i].checked) this.removeItem(document.querySelectorAll(".toDo")[i], i, this.pending.length);
     })
   }
-  removeItem(parentElem: any, i:number, count: number = 1){
-    this.renderer.addClass(parentElem, "hide")
+  removeItem(parent: any, i:number, count: number = 1){
+    this.rend.addClass(parent, "hide")
       timer(500).pipe(map(()=> {
-        parentElem.remove();
-        this.activeToDos.splice(i,count)
-        localStorage.setItem("activeTasks", JSON.stringify(this.activeToDos))
-      }),takeUntil(this.destroy$)).subscribe();
-    localStorage.setItem("completedTasks", JSON.stringify(this.completedToDos))
+        parent.remove();this.pending.splice(i,count)
+        localStorage.setItem("pending", JSON.stringify(this.pending))
+      }),takeUntil(this.destr)).subscribe();
+    localStorage.setItem("completed", JSON.stringify(this.completed))
   }
   clearAll(){
-    if(!this.completedToDos.length) {alert("There is no Completed Tasks"); return};
-    const sure = confirm("Are you sure you want to Clear all Completed Tasks?");
-    this.completedToDos.map(()=>{
-      if(sure){
-        this.completedToDos.splice(0,this.completedToDos.length);
-        localStorage.setItem("completedTasks", JSON.stringify(this.completedToDos))
-      } else return;
-    })
+    if(!this.completed.length) {alert("There is no Completed Tasks"); return};
+    const sure = confirm("Are you sure to Clear all Completed Tasks?");
+    this.completed.map(()=>{if(sure){this.completed.splice(0,this.completed.length);localStorage.setItem("completed", JSON.stringify(this.completed))}})
   }
 }

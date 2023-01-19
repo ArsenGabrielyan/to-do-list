@@ -2,25 +2,19 @@ $br: 8px;$blue: #009EFF;
 $red: #dc3545;$content-bg: #fafafa;
 @import "./scss/mixins.scss";
 .to-do-container{
-     display: flex;@include flex-align(center, center);
-     flex-direction: column;min-height: 100vh;
+     display: flex;@include flex-align(center, center);flex-direction: column;min-height: 100vh;
      background: $blue;color: #333;transition: .3s ease all;
      .upper{
-          background: $content-bg;
-          padding: 30px;border-radius: $br;
-          display: flex;flex-direction: column;
-          width: 100%;max-width: 720px;
+          background: $content-bg;padding: 30px;border-radius: $br;
+          display: flex;flex-direction: column;width: 100%;max-width: 720px;
           .app-title{
-               display: flex;@include flex-align(space-between, center);
-               h1{margin: 10px 0;}
+               display: flex;@include flex-align(space-between, center);h1{margin: 10px 0;}
                .buttons{
                     display: flex;
                     .opt-btn{
                          display: flex;@include flex-align(center, center);
-                         border: none;outline: none;background: none;
-                         border: 2px solid $blue;border-radius: $br;
-                         font-size: 1.2rem;padding: 8px 20px;cursor: pointer;color: $blue;
-                         transition: all .3s ease;margin: 5px;
+                         border: none;outline: none;background: none;border: 2px solid $blue;border-radius: $br;
+                         font-size: 1.2rem;padding: 8px 20px;cursor: pointer;color: $blue;transition: all .3s ease;margin: 5px;
                          .icon{margin-right:5px; color: inherit; transition: inherit .3s;}
                          &:hover, &.active{color: white; background: $blue;}
                     }
@@ -30,10 +24,8 @@ $red: #dc3545;$content-bg: #fafafa;
                width: 100%;margin: 10px 0;display: flex;flex-direction: column;
                .form-details{
                     width: 100%;display: flex;@include flex-align(space-between, center);
-                    .input{padding: 10px;border: 2px solid #ccc;outline: none;width: 80%;border-radius: 5px;transition: .3s ease all;font-size: 1.2rem;&:focus{border-color: $blue;}}
-                    .btn{@include button($blue,$br)}
+                    .input{padding: 10px;border: 2px solid #ccc;outline: none;width: 80%;border-radius: 5px;transition: .3s ease all;font-size: 1.2rem;&:focus{border-color: $blue;}}.btn{@include button($blue,$br)}
                }
-               .invalidMsg{color: $red;font-weight: 500;margin: 10px 0;}
           }
           .tab-link{
                display: flex;@include flex-align(space-between, center);list-style: none;
@@ -44,8 +36,7 @@ $red: #dc3545;$content-bg: #fafafa;
           width: 100%;max-width: 720px;
           .contentVal{
                .toDoList{
-                    margin: 5px;display: flex;
-                    @include flex-align(center, center);
+                    margin: 5px;display: flex;@include flex-align(center, center);
                     flex-direction: column;list-style: none;
                     .toDo{
                          width: 100%;display: flex;@include flex-align(space-between, center);

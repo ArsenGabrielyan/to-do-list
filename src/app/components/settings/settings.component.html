@@ -2,7 +2,7 @@
   <li class="option">
     <h3 class="option-title">Background Color</h3>
     <div class="box">
-      <span *ngFor="let option of colorbox" [id]="option.colorId" (click)="changeBgColor(option.colorId)">{{option.color}}</span>
+      <span *ngFor="let opt of colorbox" [id]="opt.colorId" (click)="changeBgColor(opt.colorId)">{{opt.color}}</span>
     </div>
   </li>
   <li class="option">
