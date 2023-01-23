@@ -2,11 +2,9 @@ $br: 8px;$blue: #009EFF;
 $red: #dc3545;$content-bg: #fafafa;
 @import "./scss/mixins.scss";
 .to-do-container{
-     display: flex;@include flex-align(center, center);flex-direction: column;min-height: 100vh;
-     background: $blue;color: #333;transition: .3s ease all;
+     display: flex;@include flex-align(center, center);flex-direction: column;min-height: 100vh;background: $blue;color: #333;transition: .3s ease all;
      .upper{
-          background: $content-bg;padding: 30px;border-radius: $br;
-          display: flex;flex-direction: column;width: 100%;max-width: 720px;
+          background: $content-bg;padding: 30px;border-radius: $br;display: flex;flex-direction: column;width: 100%;max-width: 720px;
           .app-title{
                display: flex;@include flex-align(space-between, center);h1{margin: 10px 0;}
                .buttons{

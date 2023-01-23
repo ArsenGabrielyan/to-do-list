@@ -18,11 +18,18 @@ export class SettingsComponent {
     {colorId: "pink", color: "#F56EB3"},
     {colorId: "dark", color: "#2f2f2f"},
   ];
-  ngOnInit():void{localStorage.setItem("brightness",String(100));document.getElementsByTagName("head")[0].appendChild(this.styleDisplay)}
+  ngOnInit():void{
+    localStorage.setItem("brightness",String(100));
+    document.getElementsByTagName("head")[0].appendChild(this.styleDisplay)
+  }
   changeBgColor(id:string){
-    const selectedItem = document.getElementById(id)!, applied = `#btn:not(:disabled){border-color: ${selectedItem.innerHTML};color: ${selectedItem.innerHTML};} #btn.active, #btn:not(:disabled):hover{background-color: ${selectedItem.innerHTML} !important;color: white !important;} #range{background-color: ${selectedItem.innerHTML} !important;} .container input:checked ~ .checkbox{background-color: ${selectedItem.innerHTML} !important;border-color: ${selectedItem.innerHTML} !important;} #add-input:focus{border-color: ${selectedItem.innerHTML}} #icon:hover{color: ${selectedItem.innerHTML === "#2f2f2f" ? '#888' : selectedItem.innerHTML};}`;
+    const selectedItem = document.getElementById(id)!, 
+    applied = `#btn:not(:disabled){border-color: ${selectedItem.innerHTML};color: ${selectedItem.innerHTML};} #btn.active, #btn:not(:disabled):hover{background-color: ${selectedItem.innerHTML} !important;color: white !important;} #range{background-color: ${selectedItem.innerHTML} !important;} .container input:checked ~ .checkbox{background-color: ${selectedItem.innerHTML} !important;border-color: ${selectedItem.innerHTML} !important;} #add-input:focus{border-color: ${selectedItem.innerHTML}} #icon:hover{color: ${selectedItem.innerHTML === "#2f2f2f" ? '#888' : selectedItem.innerHTML};}`;
     document.getElementById("app")!.style.backgroundColor = selectedItem.innerHTML;
     this.styleDisplay.appendChild(document.createTextNode(applied));
   }
-  handleChangeBrightness = ()=> {localStorage.setItem('brightness',`${this.brightness}`);document.getElementById("app")!.style.filter = `brightness(${this.brightness}%)`}
+  handleChangeBrightness(){
+    localStorage.setItem('brightness',`${this.brightness}`);
+    document.getElementById("app")!.style.filter = `brightness(${this.brightness}%)`
+  }
 }
