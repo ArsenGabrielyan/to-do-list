@@ -1,6 +1,6 @@
 import { Component, OnDestroy, Renderer2 } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ToDoItem } from './interfaces/to-do-item';
+import { IToDoItem } from './interfaces/to-do-item';
 import {timer, takeUntil, Subject, map} from "rxjs"
 
 @Component({
@@ -10,8 +10,8 @@ import {timer, takeUntil, Subject, map} from "rxjs"
 })
 export class AppComponent implements OnDestroy{
   id: string = localStorage.getItem("tab") || "active";
-  pending: ToDoItem[] = JSON.parse(localStorage.getItem("pending")!) || [];
-  completed: ToDoItem[] = JSON.parse(localStorage.getItem("completed")!) || [];
+  pending: IToDoItem[] = JSON.parse(localStorage.getItem("pending")!) || [];
+  completed: IToDoItem[] = JSON.parse(localStorage.getItem("completed")!) || [];
   input = ""; 
   destr = new Subject<void>();
 
@@ -23,7 +23,7 @@ export class AppComponent implements OnDestroy{
     localStorage.setItem("tab", this.id)
   }
   addToDo(form: NgForm){
-    let item: ToDoItem = {item: this.input,checked: false};this.pending.push(item);
+    let item: IToDoItem = {item: this.input,checked: false};this.pending.push(item);
     localStorage.setItem("pending", JSON.stringify(this.pending));form.reset(this.input)
   }
   handleCheckBox(e:any, i:number){

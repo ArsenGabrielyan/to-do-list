@@ -1,1 +1,1 @@
-export interface ColorBox {colorId: string,color: string}
+export interface IColorBox {colorId: string,color: string}

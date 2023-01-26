@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ColorBox } from '../../interfaces/color-box';
+import { IColorBox } from '../../interfaces/color-box';
 
 @Component({
   selector: 'toDo-settings',
@@ -9,7 +9,7 @@ import { ColorBox } from '../../interfaces/color-box';
 export class SettingsComponent {
   styleDisplay = document.createElement("style");
   brightness = localStorage.getItem("brightness") || 100;
-  colorbox: ColorBox[] = [
+  colorbox: IColorBox[] = [
     {colorId: "red", color: "#dc3545"},
     {colorId: "blue", color: "#009EFF"},
     {colorId: "green", color: "#22b455"},
