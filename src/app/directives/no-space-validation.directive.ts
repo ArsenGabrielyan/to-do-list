@@ -12,7 +12,9 @@ import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from "@angu
 export class NoSpaceValidationDirective implements Validator {
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
     const val = String(control.value);
-    if(val.trim() === "") return {hasAnySpaces: true}
+    if(val.trim() === "") {
+      return {hasAnySpaces: true}
+    }
     return null
   }
 }
