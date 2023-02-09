@@ -1,4 +1,5 @@
 export interface IToDoItem {
      item: string,
-     checked: boolean
+     checked: boolean,
+     dateCreated?: string
 }

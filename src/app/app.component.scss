@@ -2,7 +2,7 @@ $br: 8px;$blue: #009EFF;
 $red: #dc3545;$content-bg: #fafafa;
 @import "./scss/mixins.scss";
 .to-do-container{
-     display: flex;@include flex-align(center, center);flex-direction: column;min-height: 100vh;background: $blue;color: #333;transition: .3s ease all;
+     display: flex;@include flex-align(center, center);flex-direction: column;min-height: 100vh;background: $blue;color: #333;transition: .3s ease all;padding: 15px;
      .upper{
           background: $content-bg;padding: 30px;border-radius: $br;display: flex;flex-direction: column;width: 100%;max-width: 720px;
           .app-title{
@@ -38,8 +38,9 @@ $red: #dc3545;$content-bg: #fafafa;
                     flex-direction: column;list-style: none;
                     .toDo{
                          width: 100%;display: flex;@include flex-align(space-between, center);
-                         background: $content-bg;margin: 5px 0;padding: 10px 20px;p{width: 90%;word-break: break-all};
-                         .icon{@include makeBox(#333,$blue)}&.hide{animation: hide .5s ease forwards;}
+                         background: $content-bg;margin: 5px 0;padding: 10px 20px;.icon{@include makeBox(#333,$blue)}
+                         &.hide{animation: hide .5s ease forwards;}
+                         .content{width: 90%;p{word-break: break-all;margin: 10px 0;font-size:13.5px;&:not(.created){font-size: 25px;}}}
                     }
                }
           }

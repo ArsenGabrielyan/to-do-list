@@ -14,12 +14,10 @@ export class AppComponent implements OnDestroy{
   completed: IToDoItem[] = JSON.parse(localStorage.getItem("completed")!) || [];
   input = ""; 
   destr = new Subject<void>();
-
   constructor(private rend: Renderer2){}
   ngOnDestroy(): void {
     this.destr.next();
   }
-  
   tabChange(t:string){
     this.id = t;
     localStorage.setItem("tab", this.id)
@@ -27,10 +25,12 @@ export class AppComponent implements OnDestroy{
   addToDo(form: NgForm){
     let item: IToDoItem = {
       item: this.input,
-      checked: false
+      checked: false,
+      dateCreated: new Date(Date.now()).toUTCString()
     };
     this.pending.push(item);
-    localStorage.setItem("pending", JSON.stringify(this.pending));form.reset(this.input)
+    localStorage.setItem("pending", JSON.stringify(this.pending));
+    form.reset(this.input);
   }
   handleCheckBox(e:any, i:number){
     if(e.target.checked === undefined) return;
@@ -43,7 +43,11 @@ export class AppComponent implements OnDestroy{
   }
   editToDo(i:number){
     const newVal = prompt('Enter a new Value'); 
-    newVal?.trim() === "" ? alert("It's Required") : this.pending[i].item = newVal!;
+    if(newVal?.trim() === "") alert("It's Required");
+    else{
+      this.pending[i].item = newVal!;
+      this.pending[i].dateCreated = new Date(Date.now()).toUTCString();
+    }
     localStorage.setItem("pending", JSON.stringify(this.pending))
   }
   deleteToDo(i:number){

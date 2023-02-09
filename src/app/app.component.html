@@ -23,14 +23,25 @@
           <div class="contentVal" *ngIf="id === 'active'">
                <ul class="toDoList activeToDo">
                     <li class="toDo" *ngFor="let toDo of pending; let i = index" id="item{{i}}" (click)="handleCheckBox($event, i)">
-                         <p>{{toDo.item}}</p>
+                         <div class="content">
+                              <p>{{toDo.item}}</p>
+                              <p class="created">{{toDo.dateCreated}}</p>
+                         </div>
                          <label class="container"><input type="checkbox" name="toDoCheck" [checked]="toDo.checked"><span class="checkbox" id="checkbox"></span></label>
                          <span id="icon" class="material-symbols-outlined icon" (click)="editToDo(i)">edit</span>
                     </li>
                </ul>
           </div>
           <div class="contentVal" *ngIf="id === 'completed'">
-               <ul class="toDoList completedToDo"><li class="toDo" *ngFor="let toDo of completed; index as i" id="item{{i}}"><p>{{toDo.item}}</p><span id="icon" class="material-symbols-outlined icon" (click)="deleteToDo(i)">delete</span></li></ul>
+               <ul class="toDoList completedToDo">
+                    <li class="toDo" *ngFor="let toDo of completed; index as i" id="item{{i}}">
+                         <div class="content">
+                              <p>{{toDo.item}}</p>
+                              <p class="created">{{toDo.dateCreated}}</p>
+                         </div>
+                         <span id="icon" class="material-symbols-outlined icon" (click)="deleteToDo(i)">delete</span>
+                    </li>
+               </ul>
           </div>
           <div class="contentVal settings" *ngIf="id === 'settings'">
                <h2>Settings</h2>
